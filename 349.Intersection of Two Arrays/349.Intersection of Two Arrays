@@ -1,0 +1,65 @@
+#STEP1 何も見ずに解く
+2重ループ（2ポインタ法）で解こうとしたが時間が切れてしまった。
+
+#STEP2 解答を見てコードを整える
+https://github.com/yas-2023/leetcode_arai60/pull/13/commits/b813f57848ba38b03617bf7c1094cd558a6a2b57
+・入力値の状態によってベストな方法が異なる
+両方の配列をsetにしてretainAllする→setを2つ作るので
+両方の配列が同じくらいの長さの場合→短い方の配列をsetにして、長い方の配列をループしながらlook upする
+片方の配列が極端に長い場合（未ソート）→2ポインタ法
+片方の配列が極端に長い場合（ソート済み）→2分探索法
+
+https://github.com/kt-from-j/leetcode/pull/10/commits/8aca48aa93a922d2b46e41f47ab0278ead43a93b
+streamを使って短く書く方法もある。
+streamは書きなれておらず、forループの練習としてstreamを使わずに書く。
+
+#調べたこと
+Set→重複なしのコレクション
+https://docs.oracle.com/en/java/javase/25/docs/api//java.base/java/util/Set.html
+
+一つ一つ調べながら全部の解法をjavaで書いてみようとしていたが、
+構文エラーや知らない・忘れている所を調べていて時間がかかっていたので、まずは一つだけ実装してみることにする。
+Setの練習として、短い方の配列をsetにして、長い方の配列をループしながらlook upする方法で解く。
+時間計算量：O(n1 + n2) Set構築 + long_numsのループ
+空間計算量：O(min(n1, n2)) 短い方の配列でSet構築
+
+#STEP3解答
+
+```java
+
+class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+        Set<Integer> short_nums = new HashSet<>();
+        int[] long_nums;
+
+        if (nums1.length > nums2.length) {
+            for (int num2 : nums2) {
+                short_nums.add(num2);
+            }
+            long_nums = nums1;
+        }
+        else {
+            for (int num1 : nums1) {
+                short_nums.add(num1);
+            }
+            long_nums = nums2;
+        }
+
+        List<Integer> intersection = new ArrayList<>();
+        for (int long_num : long_nums) {
+            if (short_nums.contains(long_num)) {
+                intersection.add(long_num);
+                short_nums.remove(long_num);
+            }
+        }
+        int[] result = new int[intersection.size()];
+        for (int i = 0; i < intersection.size(); i++) {
+            result[i] = intersection.get(i);
+        }
+
+        return result;
+        
+      }
+}
+
+```
