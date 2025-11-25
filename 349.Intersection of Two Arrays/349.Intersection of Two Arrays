@@ -26,6 +26,7 @@ Setの練習として、短い方の配列をsetにして、長い方の配列�
 ■STEP2、3解答
 
 ```java
+
 class Solution {
     public int[] intersection(int[] nums1, int[] nums2) {
         Set<Integer> short_nums = new HashSet<>();
@@ -60,4 +61,5 @@ class Solution {
         
       }
 }
+
 ```
