@@ -1,7 +1,7 @@
-#STEP1 何も見ずに解く
+■STEP1 何も見ずに解く
 2重ループ（2ポインタ法）で解こうとしたが時間が切れてしまった。
 
-#STEP2 解答を見てコードを整える
+■STEP2 解答を見てコードを整える
 https://github.com/yas-2023/leetcode_arai60/pull/13/commits/b813f57848ba38b03617bf7c1094cd558a6a2b57
 ・入力値の状態によってベストな方法が異なる
 両方の配列をsetにしてretainAllする→setを2つ作るので
@@ -23,7 +23,8 @@ Setの練習として、短い方の配列をsetにして、長い方の配列�
 時間計算量：O(n1 + n2) Set構築 + long_numsのループ
 空間計算量：O(min(n1, n2)) 短い方の配列でSet構築
 
-#STEP2、3解答
+■STEP2、3解答
+
 ```java
 class Solution {
     public int[] intersection(int[] nums1, int[] nums2) {
